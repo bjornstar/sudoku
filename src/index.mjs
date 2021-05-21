@@ -1,8 +1,10 @@
-import { Canvas, render } from '@react-three/fiber';
-import { Scene } from "./scene.mjs";
+import { Canvas } from '@react-three/fiber';
+import { render } from 'react-dom';
+
+import { mesh } from "./scene.mjs";
 
 const { createElement } = React;
 
-const view = createElement(Canvas, Scene);
+const view = createElement(Canvas, null, createElement(mesh));
 
 render(view, document.querySelector('body'));
