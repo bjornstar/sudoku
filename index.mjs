@@ -4,23 +4,34 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 
-const { ProvidePlugin } = webpack;
-
 const middleware = webpackDevMiddleware(webpack({
-  entry: './src/index.mjs',
+  entry: './src/index.jsx',
   mode: 'none',
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]
+            ]
+          }
+        }
+      }
+    ]
+  },
+
   optimization: {
-    nodeEnv: 'production'
+    nodeEnv: 'development',
+    sideEffects: false
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: './index.html',
       inject: false,
       template: './src/index.html'
-    }),
-    new ProvidePlugin({
-      'React': 'react/umd/react.production.min.js',
-      'ReactDOM': 'react-dom/umd/react-dom.production.min.js'
     })
   ]
 }), {});
