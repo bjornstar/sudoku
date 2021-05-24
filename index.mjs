@@ -22,10 +22,8 @@ const middleware = webpackDevMiddleware(webpack({
       }
     ]
   },
-
   optimization: {
-    nodeEnv: 'development',
-    sideEffects: false
+    nodeEnv: 'development'
   },
   plugins: [
     new HtmlWebpackPlugin({

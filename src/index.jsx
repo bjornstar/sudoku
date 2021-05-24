@@ -1,11 +1,13 @@
 import { Canvas } from '@react-three/fiber';
 import { render } from 'react-dom';
 
-import Box from './scene.jsx';
+import Scene from './scene.jsx';
 
 const View = () => (
   <Canvas>
-    <Box />
+    <ambientLight />
+    <pointLight position={[10, 10, 10]} />
+    <Scene />
   </Canvas>
 );
 
